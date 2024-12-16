@@ -1,6 +1,16 @@
 # Vue Dynamic Components (vue-dc)
 
+[![npm version](https://img.shields.io/npm/v/vue-dc.svg)](https://www.npmjs.com/package/vue-dc)
+[![npm downloads](https://img.shields.io/npm/dm/vue-dc.svg)](https://www.npmjs.com/package/vue-dc)
+[![license](https://img.shields.io/npm/l/vue-dc.svg)](https://github.com/yourusername/vue-dc/blob/main/LICENSE)
+
 一个用于动态渲染 Vue 组件的高性能解决方案。
+
+## 版本要求
+
+- Vue >= 3.2.0
+- TypeScript >= 4.5.0
+- Node.js >= 16.0.0
 
 ## 特性
 
