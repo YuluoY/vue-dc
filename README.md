@@ -1,10 +1,19 @@
 # Vue Dynamic Components (vue-dc)
 
-[![npm version](https://img.shields.io/npm/v/vue-dc.svg)](https://www.npmjs.com/package/vue-dc)
-[![npm downloads](https://img.shields.io/npm/dm/vue-dc.svg)](https://www.npmjs.com/package/vue-dc)
-[![license](https://img.shields.io/npm/l/vue-dc.svg)](https://github.com/yourusername/vue-dc/blob/main/LICENSE)
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Vue](https://img.shields.io/badge/vue-%3E=3.2.0-green.svg)
+![TypeScript](https://img.shields.io/badge/typescript-%3E=4.5.0-blue.svg)
+![Node](https://img.shields.io/badge/node-%3E=16.0.0-brightgreen.svg)
+![License](https://img.shields.io/badge/license-MIT-orange.svg)
 
 一个用于动态渲染 Vue 组件的高性能解决方案。
+
+## 环境支持
+
+- VS Code >= 1.60
+- Chrome >= 87
+- Firefox >= 78
+- Safari >= 14
 
 ## 版本要求
 
