@@ -1,0 +1,35 @@
+{
+  "name": "vue3-demo",
+  "version": "1.0.0",
+  "description": "Vue3 + JavaScript + Vite 演示项目",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "npm run dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@vicons/ionicons5": "^0.12.0",
+    "@yuluoiii/vue-dc": "^1.1.2",
+    "element-plus": "^2.10.7",
+    "highlight.js": "^11.11.1",
+    "lodash-es": "^4.17.21",
+    "naive-ui": "^2.42.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "vue3",
+    "vite",
+    "javascript",
+    "demo"
+  ],
+  "author": "Vue3 Demo",
+  "license": "MIT"
+}

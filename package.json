@@ -1,0 +1,113 @@
+{
+  "name": "@yuluoiii/vue-dc",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/vue-dc.umd.js",
+  "module": "./dist/vue-dc.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-dc.esm.js",
+      "require": "./dist/vue-dc.umd.js"
+    }
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:demo": "cd demo && npm run dev",
+    "build:demo": "npm run build && cd demo && npm run build",
+    "preview": "cd demo && npm run preview",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "init-git": "node scripts/init-git.js",
+    "release": "node scripts/release.js",
+    "push": "git remote remove origin && git remote add origin https://github.com/YuluoY/vue-dc.git && git push -u origin main",
+    "commit": "node scripts/commit.js",
+    "version:patch": "npm version patch && npm run postversion",
+    "version:minor": "npm version minor && npm run postversion",
+    "version:major": "npm version major && npm run postversion",
+    "postversion": "git push && git push --tags",
+    "deploy": "npm run build && cd demo && npm run build",
+    "deploy:preview": "cd demo && npm run preview",
+    "build": "gulp build",
+    "build:prod": "cross-env NODE_ENV=production gulp build",
+    "dev": "gulp dev",
+    "watch": "gulp watch",
+    "clean": "gulp clean",
+    "prepublishOnly": "npm run build",
+    "publish:npm": "npm publish",
+    "publish:npm:beta": "npm publish --tag beta"
+  },
+  "keywords": [
+    "vue",
+    "component",
+    "structure",
+    "vue3",
+    "dynamic",
+    "configuration",
+    "dynamic-components",
+    "vue-components",
+    "json-to-component",
+    "configuration-driven"
+  ],
+  "author": "yuluo <568055454@qq.com>",
+  "license": "MIT",
+  "description": "Vue3 动态结构化组件库 - 支持通过配置动态生成Vue组件",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YuluoY/vue-dc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YuluoY/vue-dc/issues"
+  },
+  "homepage": "https://github.com/YuluoY/vue-dc#readme",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/eslint-parser": "^7.23.10",
+    "@babel/plugin-transform-runtime": "^7.28.3",
+    "@babel/preset-env": "^7.23.0",
+    "@babel/runtime": "^7.28.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "core-js": "^3.45.1",
+    "cross-env": "^10.0.0",
+    "del": "^6.1.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.21.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^3.0.0",
+    "gulp-json-editor": "^2.4.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "lodash-es": "^4.17.21",
+    "vue": "^3.5.18"
+  },
+  "dependencies": {
+    "boxen": "^5.1.2",
+    "chalk": "^4.1.2",
+    "figlet": "^1.6.0",
+    "gradient-string": "^2.0.2",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1",
+    "semver": "^7.5.4"
+  },
+  "unpkg": "./dist/vue-dc.min.js",
+  "jsdelivr": "./dist/vue-dc.min.js"
+}
