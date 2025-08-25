@@ -1,6 +1,6 @@
 {
   "name": "@yuluoiii/vue-dc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "./dist/vue-dc.umd.js",
   "module": "./dist/vue-dc.esm.js",

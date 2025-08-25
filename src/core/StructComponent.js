@@ -12,32 +12,31 @@ import DcCache from "../cache"
 import { CUSTOM_DIRECTIVES, DEFAULT_COMPONENT_NAME, PATCH_FLAGS, INJECTION_KEYS } from "../constants"
 import { processSlots } from "../utils/slots-hanlder"
 import { removeExtraFuncEvent } from "../utils/core"
+import { isFunction } from "lodash-es"
 
 export const StructComponent = (struct) => 
 {
-  if (struct.directives?.[CUSTOM_DIRECTIVES.IF] === false)
+  if (struct?.directives?.[CUSTOM_DIRECTIVES.IF] === false)
     return h(_ => null)
 
   if (DcCache.hasVNode(struct))
     return DcCache.getVNode(struct)
 
-  const parentCtx = inject(INJECTION_KEYS.PARENT_CTX, null)
-
   const wrapper = struct.wrapper ?? true
 
-  const vnode = wrapper ? createWrapperStructComponent(struct, parentCtx) : createPureStructComponent(struct, parentCtx)
+  const vnode = wrapper ? createWrapperStructComponent(struct) : createPureStructComponent(struct)
 
   DcCache.addVNode(struct, vnode)
   return vnode
 }
 
-export const createPureStructComponent = (struct, parentCtx) =>
+export const createPureStructComponent = (struct) =>
 {
-  const events = processEvents(struct.events || {}, parentCtx)
+  const events = processEvents(struct.events || {})
   const props = { ...struct.props, ...events }
-  const slots = processSlots(struct.slots || {}, parentCtx)
-  const type = resolveType(struct.type, parentCtx)
-  const children = processChildren(struct.children || [], parentCtx)
+  const slots = processSlots(struct.slots || {})
+  const type = resolveType(struct.type)
+  const children = processChildren(struct.children || [])
   const directives = processDirectives(struct.directives || {})
 
   const flag = struct.props ? PATCH_FLAGS.FULL_PROPS : PATCH_FLAGS.NO_PATCH
@@ -57,7 +56,7 @@ export const createPureStructComponent = (struct, parentCtx) =>
   return directives?.length ? withDirectives(vnode, directives) : vnode
 }
 
-export const createWrapperStructComponent = (struct, parentCtx) =>
+export const createWrapperStructComponent = (struct) =>
 {
   const hooks = processHooks(struct)
   const methods = processMethods(struct)
@@ -77,7 +76,9 @@ export const createWrapperStructComponent = (struct, parentCtx) =>
       const proxy = instance?.proxy || {}
       const uid = instance?.uid || DcCache.count + 1
       
-      provide(INJECTION_KEYS.PARENT_CTX, context)
+      const parent = inject(INJECTION_KEYS.PARENT_CTX, null)
+
+      provide(INJECTION_KEYS.PARENT_CTX, instance)
 
       const type = shallowRef(_.type)
       const props = reactive(_.props || {})
@@ -105,7 +106,7 @@ export const createWrapperStructComponent = (struct, parentCtx) =>
 
       return {
         ...features,
-        parentCtx,
+        parent,
         uid,
         instance,
         type,
@@ -119,7 +120,7 @@ export const createWrapperStructComponent = (struct, parentCtx) =>
   
     render(ctx)
     {
-      if (ctx.directives?.[CUSTOM_DIRECTIVES.IF] === false)
+      if (ctx?.directives?.[CUSTOM_DIRECTIVES.IF] === false)
         return h(_ => null)
 
       const type = resolveType(ctx.type, ctx.instance)
@@ -137,7 +138,7 @@ export const createWrapperStructComponent = (struct, parentCtx) =>
       }
 
       const vnode = h(type, props, {
-        default: children,
+        default: isFunction(children) ? children : () => [children],
         ...slots
       })
 

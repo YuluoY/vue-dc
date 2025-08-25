@@ -1,5 +1,5 @@
 import { isString, isPlainObject, isArray, isFunction, omit, capitalize } from "lodash-es"
-import { Fragment, h, resolveDirective, withModifiers } from "vue"
+import { Fragment, h, resolveDirective, withModifiers, isVNode } from "vue"
 import { createStructComponent } from "../core/StructComponent"
 import Directives from "../core/Directives"
 import { ExtraFunc, Keyboard } from "../core/Modifiers"
@@ -15,14 +15,16 @@ const Extra = Object.values(EXTRA_EVENT_MODIFIERS)
  */
 export const withStruct = (value, ctx) =>
 {
+  if (isVNode(value))
+    return value
   if (isString(value))
-    return () => value
+    return h(Fragment, null, [value])
   else if (isPlainObject(value))
-    return () => createStructComponent(value)
+    return createStructComponent(value)
   else if (isArray(value))
-    return () => h(Fragment, null, value.map((child, index) => createStructComponent(Object.assign(child, { key: child.name || child.key || index }))))
+    return h(Fragment, null, value.map((child, index) => createStructComponent(Object.assign(child, { key: child.name || child.key || index }))))
   else if (isFunction(value))
-    return (...args) => withStruct(value.call(ctx, ...args), ctx)?.()
+    return (...args) => [withStruct(value.call(ctx, ...args), ctx)]
   else
   {
     console.error(`Invalid children: ${value}`)

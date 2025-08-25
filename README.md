@@ -12,7 +12,6 @@ Vue3 动态结构化组件库 - 支持通过配置动态生成Vue组件
 - 🎯 **类型安全**: 完整的类型验证和错误提示
 - 🔧 **高度可配置**: 支持属性、事件、指令、插槽、生命周期钩子等完整配置
 - 📦 **轻量级**: 无额外依赖，纯Vue3实现
-- 🎨 **UI框架兼容**: 支持Element Plus、Naive UI等主流UI框架
 - ⚡ **高性能**: 虚拟滚动支持，优化大数据渲染
 - 🔄 **命名空间**: 支持数据命名空间管理
 - 🎛️ **依赖注入**: 支持provide/inject模式
@@ -280,63 +279,6 @@ slots: {
 }
 ```
 
-## 🎨 演示
-
-### 本地运行演示
-
-```bash
-# 克隆项目
-git clone https://github.com/YuluoY/vue-dc.git
-
-# 安装依赖
-npm install
-
-# 运行演示
-npm run dev
-```
-
-### 演示功能
-
-项目包含完整的演示页面，展示以下功能：
-
-- **基础测试**: 简单表单、数据表格等基础组件配置
-- **属性测试**: 各种属性绑定和数据验证
-- **事件测试**: 事件处理和修饰符使用
-- **指令测试**: 内置指令和自定义指令
-- **插槽测试**: 默认插槽和具名插槽
-- **性能测试**: 虚拟滚动和大量数据渲染
-- **子组件测试**: 复杂嵌套组件结构
-
-### 在Vue组件中使用
-
-```vue
-<template>
-  <div>
-    <!-- 使用 struct-component 渲染配置 -->
-    <struct-component v-bind="config" />
-  </div>
-</template>
-
-<script>
-export default {
-  setup() {
-    const config = {
-      type: "el-button",
-      props: { type: "primary" },
-      events: {
-        click: function() {
-          alert('按钮被点击了！')
-        }
-      },
-      children: "点击我"
-    }
-    
-    return { config }
-  }
-}
-</script>
-```
-
 ## 🚀 部署和使用指南
 
 ### 1. 初始化项目
@@ -393,45 +335,6 @@ git push origin main
 git push origin v1.0.0
 ```
 
-### 4. 构建和部署
-
-#### 构建主库
-```bash
-# 开发构建
-npm run build
-
-# 生产构建
-npm run build:prod
-```
-
-#### 构建演示项目
-```bash
-# 构建演示项目
-npm run build:demo
-
-# 预览演示项目
-npm run preview
-```
-
-## 🏷️ 标签管理
-
-### 查看标签
-```bash
-# 查看所有标签
-git tag
-
-# 查看远程标签
-git ls-remote --tags origin
-```
-
-### 删除标签
-```bash
-# 删除本地标签
-git tag -d v1.0.0
-
-# 删除远程标签
-git push origin --delete v1.0.0
-```
 
 ## 🔧 配置说明
 

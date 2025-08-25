@@ -1,5 +1,6 @@
 import { isPlainObject, isString, isFunction, omit } from "lodash-es"
 import { CUSTOM_DIRECTIVES_KEYS, LIFECYCLE_HOOKS, EVENTS_MODIFIERS } from '../constants'
+import { isRef } from "vue"
 
 /**
  * 校验modelValue对象
@@ -51,6 +52,10 @@ export const validProps = (value) => {
  * @returns {boolean}
  */
 export const validChildren = (value) => {
+
+  if (isRef(value))
+    return true
+  
   if (!value)
     return true
 

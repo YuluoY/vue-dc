@@ -9,7 +9,6 @@
     <!-- 基础组件测试 -->
     <div class="basic-tests">
       <h2>基础组件测试</h2>
-      <component style="width: 100%;min-height: 300px;" :is="TestComponent"></component>
       <div class="test-list">
         <div 
           v-for="(config, key, index) in basicConfigs" 
@@ -42,29 +41,12 @@
 import * as basicConfigs from './configs/basic-test.js'
 // 导入序列化函数
 import { serializeWithFunctions } from '../utils/index.js'
-import { createVNode } from 'vue'
-import { ElTable, ElTableColumn } from 'element-plus'
 
 export default {
   name: 'BasicTest',
   setup() {
 
-    const vnode = createVNode(ElTable, {
-      data: [
-        { id: 1, name: 'John' },
-        { id: 2, name: 'Jane' }
-      ]
-    }, {
-      default: () => [
-        createVNode(ElTableColumn, {
-          label: 'Name',
-          prop: 'name'
-        })
-      ]
-    })
-
     return {
-      TestComponent: vnode,
       basicConfigs,
       serializeWithFunctions  
     }
